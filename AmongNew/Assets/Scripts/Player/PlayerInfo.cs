@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Info : Photon.Pun.MonoBehaviourPun, IPunObservable
+public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
 {
     public int colorIndex;
 
@@ -15,7 +15,7 @@ public class Player_Info : Photon.Pun.MonoBehaviourPun, IPunObservable
     {
         if (photonView.IsMine)
         {
-            colorIndex = Random.Range(0, _allPlayerColors.Count - 1);// -1 вроде не надо
+            colorIndex = Random.Range(0, _allPlayerColors.Count - 1);// -1 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
         }
     }
 

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player_Controller : MonoBehaviour
+public class Player_Controller : Photon.Pun.MonoBehaviourPun
 {
     //Components
     Rigidbody myRB;
     Transform myAvatar;
     Animator myAnim;
-    //Управление персонажем
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
     [SerializeField] float movementSpeed;
 
-    float direction = 1;
+    //float direction = 1;
 
     private void OnEnable()
     {
@@ -28,24 +28,30 @@ public class Player_Controller : MonoBehaviour
 
     private void Start()
     {
-        myRB = GetComponent<Rigidbody>();
-        myAvatar = transform.GetChild(0);
-        myAnim = GetComponent<Animator>();
+        if (photonView.IsMine)
+        {
+            myRB = GetComponent<Rigidbody>();
+            myAvatar = transform.GetChild(0);
+            myAnim = GetComponent<Animator>();
+        }
     }
 
     private void Update()
     {
-        movementInput = WASD.ReadValue<Vector2>();
-        if (movementInput.x != 0)
+        if (photonView.IsMine)
         {
-            myAvatar.localScale = new Vector2(Mathf.Sign(movementInput.x), 1);
+            movementInput = WASD.ReadValue<Vector2>();
+            if (movementInput.x != 0)
+            {
+                myAvatar.localScale = new Vector2(Mathf.Sign(movementInput.x), 1);
+            }
+            myAnim.SetFloat("Speed", movementInput.magnitude);
         }
-
-        myAnim.SetFloat("Speed", movementInput.magnitude);
     }
 
     private void FixedUpdate()
     {
-        myRB.velocity = movementInput * movementSpeed;
+        if (photonView.IsMine)
+            myRB.velocity = movementInput * movementSpeed;
     }
 }
