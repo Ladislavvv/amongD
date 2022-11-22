@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move_Player : MonoBehaviour
+public class Move_Player : Photon.Pun.MonoBehaviourPun
 {
     public float speed = 4;
 
@@ -18,13 +18,19 @@ public class Move_Player : MonoBehaviour
 
     private void Update()
     {
-        velocity.x = Input.GetAxisRaw("Horizontal");
-        velocity.y = Input.GetAxisRaw("Vertical");
+        if (photonView.IsMine)
+        {
+            velocity.x = Input.GetAxisRaw("Horizontal");
+            velocity.y = Input.GetAxisRaw("Vertical");
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + velocity * speed * Time.fixedDeltaTime);
+        if (photonView.IsMine)
+        {
+            rb.MovePosition(rb.position + velocity * speed * Time.fixedDeltaTime);
+        }
     }
 }
 
