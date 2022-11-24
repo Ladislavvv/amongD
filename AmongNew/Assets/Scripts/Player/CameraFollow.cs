@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
 
     
-    void Update()
+    void FixedUpdate()
     {
         if (target == null) { return; }
         Vector3 targetPosition = target.position + new Vector3(0, 0, -10);

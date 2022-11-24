@@ -6,14 +6,14 @@ public class UIControl : MonoBehaviour {
     public static UIControl Instance;
 
     public Button _killBtn;
-    //public Button _useBtn;
+    public Button _useBtn;
     //public Button _reportDeadBodyBtn;
 
     public bool HasTarget;
     public Killable CurrentPlayer;
 
-    //public bool HasInteractble;
-    //public Interactible CurrentInteractible;
+    public bool HasInteractible;
+    public Interactible CurrentInteractible;
 
     //public bool HasDeadBodyInRange;
 
@@ -32,7 +32,7 @@ public class UIControl : MonoBehaviour {
         }
 
         _killBtn.interactable = HasTarget;
-        //_useBtn.interactable = HasInteractible;
+        _useBtn.interactable = HasInteractible;
         //_reportDeadBodyBtn.interactable = HasDeadBodyInRange;
     }
 
@@ -46,8 +46,8 @@ public class UIControl : MonoBehaviour {
     //}
 
     public void OnUseButtonPressed() {
-        //if (CurrentInteractible == null) { return; }
-        //CurrentInteractible.Use(true);
+        if (CurrentInteractible == null) { return; }
+        CurrentInteractible.Use(true);
     }
 
     //public void OnChatButtonPressed() {

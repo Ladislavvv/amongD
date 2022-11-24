@@ -1,20 +1,21 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player_Controller : Photon.Pun.MonoBehaviourPun
+public class Player_Controller : Photon.Pun.MonoBehaviourPun, IPunObservable
 {
     //Components
     Rigidbody myRB;
-    Transform myAvatar;
+    [SerializeField] Transform myAvatar;
     Animator myAnim;
     //���������� ����������
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
     [SerializeField] float movementSpeed;
 
-    //float direction = 1;
+    float direction = 1;
 
     private void OnEnable()
     {
@@ -31,27 +32,41 @@ public class Player_Controller : Photon.Pun.MonoBehaviourPun
         if (photonView.IsMine)
         {
             myRB = GetComponent<Rigidbody>();
-            myAvatar = transform.GetChild(0);
+            //myAvatar = transform.GetChild(0);
+            Debug.Log("myAvatr: " + myAvatar);
             myAnim = GetComponent<Animator>();
         }
     }
 
     private void Update()
     {
+        myAvatar.localScale = new Vector2(direction, 1);
         if (photonView.IsMine)
         {
             movementInput = WASD.ReadValue<Vector2>();
+            myAnim.SetFloat("Speed", movementInput.magnitude);
             if (movementInput.x != 0)
             {
-                myAvatar.localScale = new Vector2(Mathf.Sign(movementInput.x), 1);
+                direction = Mathf.Sign(movementInput.x);
             }
-            myAnim.SetFloat("Speed", movementInput.magnitude);
         }
     }
 
     private void FixedUpdate()
     {
         if (photonView.IsMine)
-            myRB.velocity = movementInput * movementSpeed;
+            myRB.velocity = movementInput.normalized * movementSpeed;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(direction);
+        }
+        else
+        {
+            direction = (float)stream.ReceiveNext();
+        }
     }
 }
