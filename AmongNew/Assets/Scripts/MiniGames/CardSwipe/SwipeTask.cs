@@ -11,6 +11,9 @@ public class SwipeTask : MonoBehaviour
     public GameObject _greenOn;
     public GameObject _redOn;
 
+    public Transform startPosCard;
+ 
+
     private int _currentSwipePointIndex = 0;
     private float _countdown = 0;
 
@@ -18,6 +21,7 @@ public class SwipeTask : MonoBehaviour
     {
         _currentSwipePointIndex = 0;
         _countdown = 0;
+        startPosCard = transform.GetChild(3);
 
         _greenOn.SetActive(false);
         _redOn.SetActive(false);
@@ -46,7 +50,7 @@ public class SwipeTask : MonoBehaviour
             _redOn.SetActive(true);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.8f);
 
         _greenOn.SetActive(false);
         _redOn.SetActive(false);
@@ -71,6 +75,11 @@ public class SwipeTask : MonoBehaviour
             //Debug.Log("Finish");
             StartCoroutine(FinishTask(true));
         }
+    }
+
+    public void wireOffTask()
+    {
+        gameObject.SetActive(false);
     }
 
 }

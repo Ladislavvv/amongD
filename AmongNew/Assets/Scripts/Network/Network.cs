@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Network : MonoBehaviourPunCallbacks
 {
     //public Text statusText;
+    public MasterClient masterClient;
     public CameraFollow playerCamera;
 
     private void Start()
@@ -23,6 +24,10 @@ public class Network : MonoBehaviourPunCallbacks
         //statusText.text = "Connecting";
         //PhotonNetwork.NickName = "Player" + Random.Range(0, 5000);
         //PhotonNetwork.ConnectUsingSettings();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            masterClient.Initialize();
+        }
     }
 
     //public override void OnConnectedToMaster()

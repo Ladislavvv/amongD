@@ -33,7 +33,7 @@ public class Player_Controller : Photon.Pun.MonoBehaviourPun, IPunObservable
         {
             myRB = GetComponent<Rigidbody>();
             //myAvatar = transform.GetChild(0);
-            Debug.Log("myAvatr: " + myAvatar);
+            //Debug.Log("myAvatr: " + myAvatar);
             myAnim = GetComponent<Animator>();
         }
     }

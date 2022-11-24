@@ -55,7 +55,7 @@ public class TaskInteraction : MonoBehaviourPun {
             _target = newTarget;
             UIControl.Instance.CurrentInteractible = _target;
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

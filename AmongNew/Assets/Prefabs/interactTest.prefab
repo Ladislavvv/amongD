@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5533210801930531242}
   - component: {fileID: 5533210801930531243}
   m_Layer: 3
-  m_Name: KeyPad
+  m_Name: interactTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

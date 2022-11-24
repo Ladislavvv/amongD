@@ -26,7 +26,7 @@ public class Killable : MonoBehaviourPun {
     private void Update() {
         if (!photonView.IsMine) { return; }
         
-        if (_target != null)// && IsImpostor) 
+        if (_target != null && IsImpostor) 
         {
             _lineRenderer.SetPosition(0, transform.position);
             _lineRenderer.SetPosition(1, _target.transform.position);

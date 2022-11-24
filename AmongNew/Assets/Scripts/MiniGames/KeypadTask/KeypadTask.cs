@@ -46,10 +46,17 @@ public class KeypadTask : MonoBehaviour
     private IEnumerator ResetCode()
     {
         _isReseting = true;
+        
 
         yield return new WaitForSeconds(_codeResetTimeInSeconds);
 
         _inputCode.text = string.Empty;
         _isReseting = false;
+        taskOTurnOff();
+    }
+
+    public void taskOTurnOff()
+    {
+        gameObject.SetActive(false);
     }
 }

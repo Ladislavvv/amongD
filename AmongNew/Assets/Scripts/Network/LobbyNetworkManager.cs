@@ -260,7 +260,7 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
 
     public void OnStartGamePressed()
     {
-        PhotonNetwork.LoadLevel("game_sceneOther");//SampleScene 1 // Game_scene
+        PhotonNetwork.LoadLevel("Game_scene");//SampleScene 1 // Game_scene game_sceneOther
     }
 
     public void OnJoinPrivateRoomPressed()

@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 6723987898366876465}
   - component: {fileID: 2389824924359912219}
   - component: {fileID: 1631433337929198585}
+  - component: {fileID: 6160309871380257871}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -343,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsImpostor: 0
-  _range: 5
+  _range: 1.5
 --- !u!120 &6723987898366876465
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -390,7 +391,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.40570265
+    widthMultiplier: 0.10052775
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -480,6 +481,20 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &6160309871380257871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769568244336353504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0757c342411698d4095be572888a0429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _impostorWindow: {fileID: 0}
+  _impostorText: {fileID: 0}
 --- !u!1 &2958486495131037306
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3cf2d7b21ecc04b8422e5d0b9ebeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 5
+  _range: 1.7
 --- !u!120 &7487592020153768569
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -572,7 +587,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5075567
+    widthMultiplier: 0.10083448
     widthCurve:
       serializedVersion: 2
       m_Curve:

@@ -2349,7 +2349,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 781263262}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChatWindowUI, Assembly-CSharp
         m_MethodName: OnSendButtonPressed
         m_Mode: 1
@@ -2524,7 +2524,6 @@ GameObject:
   - component: {fileID: 781263259}
   - component: {fileID: 781263261}
   - component: {fileID: 781263260}
-  - component: {fileID: 781263262}
   - component: {fileID: 781263263}
   m_Layer: 5
   m_Name: ChatWindow
@@ -2594,22 +2593,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781263258}
   m_CullTransparentMesh: 0
---- !u!114 &781263262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781263258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e4393dca4ad974d99f7ae73793d737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _chatItemPrefab: {fileID: 648720503035912789, guid: 218cc6fd29b76eb4787cb4c130e4cc6c, type: 3}
-  _container: {fileID: 1226059630}
-  _inputText: {fileID: 1335357531}
-  _playerInfo: {fileID: 0}
 --- !u!114 &781263263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2738,7 +2721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4556aa57f2f6ebb4f8568d78388a2432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 912962609}
 --- !u!4 &817919706
 Transform:
   m_ObjectHideFlags: 0
@@ -3063,7 +3046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e438f954d41c34d9df230cebaeabda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 5211008631025085400, guid: e5f2ac84979e4734191a100aa89cae34, type: 3}
   smoothTime: 0.13
 --- !u!114 &912962610
 MonoBehaviour:
