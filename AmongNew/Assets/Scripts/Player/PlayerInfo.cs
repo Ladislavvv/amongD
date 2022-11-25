@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
 {
@@ -21,6 +22,10 @@ public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
         if (photonView.IsMine)
         {
             colorIndex = Random.Range(0, _allPlayerColors.Count - 1);// -1 ����� �� ����
+        }
+        else
+        {
+            Destroy(GetComponentInChildren<Light2D>());
         }
     }
 
