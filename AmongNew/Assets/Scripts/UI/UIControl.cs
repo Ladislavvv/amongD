@@ -17,14 +17,20 @@ public class UIControl : MonoBehaviour {
 
     //public bool HasDeadBodyInRange;
 
-    //public GameObject ChatWindowUI;
+    public GameObject ChatWindowUI;
     //public GameObject YouHaveBeenKilledWindow;
 
-    //public bool IsChatWindowActive { get { return ChatWindowUI.activeInHierarchy; } }
+    public bool IsChatWindowActive { get { return ChatWindowUI.activeInHierarchy; } }
 
     private void Awake() {
         Instance = this;
     }
+
+    //private void Start()
+    //{
+    //    ChatWindowUI.SetActive(!ChatWindowUI.activeInHierarchy);
+    //    ChatWindowUI.SetActive(!ChatWindowUI.activeInHierarchy);
+    //}
 
     private void Update() {
         if (CurrentPlayer != null) {
@@ -37,7 +43,7 @@ public class UIControl : MonoBehaviour {
     }
 
     public void OnKillButtonPressed() {
-        if (CurrentPlayer == null) { return; }
+        if (CurrentPlayer == null ) { return; } //|| CurrentPlayer.IsImpostor
         CurrentPlayer.Kill();
     }
 
@@ -50,7 +56,7 @@ public class UIControl : MonoBehaviour {
         CurrentInteractible.Use(true);
     }
 
-    //public void OnChatButtonPressed() {
-    //   ChatWindowUI.SetActive(!ChatWindowUI.activeInHierarchy);
-    //}
+    public void OnChatButtonPressed() {
+       ChatWindowUI.SetActive(!ChatWindowUI.activeInHierarchy);   
+    }
 }

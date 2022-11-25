@@ -11,6 +11,11 @@ public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
 
     public List<Color> _allPlayerColors = new List<Color>();
 
+    public Color CurrentColor
+    {
+        get { return _allPlayerColors[colorIndex]; }
+    }
+
     private void Awake()
     {
         if (photonView.IsMine)

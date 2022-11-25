@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAvatar: {fileID: 9160236232556753672}
+  _uiControl: {fileID: 0}
   WASD:
     m_Name: WASD
     m_Type: 0

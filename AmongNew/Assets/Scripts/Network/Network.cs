@@ -12,18 +12,25 @@ public class Network : MonoBehaviourPunCallbacks
     //public Text statusText;
     public MasterClient masterClient;
     public CameraFollow playerCamera;
+    public UIControl uiControl;
+    public ChatWindowUI chatWindowUI;
 
     private void Start()
     {
         //statusText.text = "Connected to " + PhotonNetwork.CurrentRoom.Name;
-        playerCamera.target = PhotonNetwork.Instantiate("Player",
+         GameObject newPlayer = PhotonNetwork.Instantiate("Player",
             new Vector3(
                 Random.Range(-4, 4),
                 Random.Range(-4, 0),
-                0), Quaternion.identity).transform;
+                0), Quaternion.identity);
         //statusText.text = "Connecting";
         //PhotonNetwork.NickName = "Player" + Random.Range(0, 5000);
         //PhotonNetwork.ConnectUsingSettings();
+
+        playerCamera.target = newPlayer.transform;
+        chatWindowUI._playerInfo = newPlayer.GetComponent<PlayerInfo>();
+        newPlayer.GetComponent<Player_Controller>()._uiControl = uiControl;
+
         if (PhotonNetwork.IsMasterClient)
         {
             masterClient.Initialize();

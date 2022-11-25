@@ -26,7 +26,7 @@ public class Killable : MonoBehaviourPun {
     private void Update() {
         if (!photonView.IsMine) { return; }
         
-        if (_target != null && IsImpostor) 
+        if (_target != null && IsImpostor && !_target.IsImpostor) 
         {
             _lineRenderer.SetPosition(0, transform.position);
             _lineRenderer.SetPosition(1, _target.transform.position);
@@ -61,7 +61,7 @@ public class Killable : MonoBehaviourPun {
     }
 
     public void Kill() {
-        if (_target == null) { return; }
+        if (_target == null || _target.IsImpostor) { return; }
         PhotonView pv = _target.GetComponent<PhotonView>();
         pv.RPC("KillRPC", RpcTarget.All);
     }

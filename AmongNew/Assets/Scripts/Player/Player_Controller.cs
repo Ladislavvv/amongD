@@ -10,6 +10,8 @@ public class Player_Controller : Photon.Pun.MonoBehaviourPun, IPunObservable
     Rigidbody myRB;
     [SerializeField] Transform myAvatar;
     Animator myAnim;
+
+    public UIControl _uiControl;
     //���������� ����������
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
@@ -35,13 +37,13 @@ public class Player_Controller : Photon.Pun.MonoBehaviourPun, IPunObservable
             //myAvatar = transform.GetChild(0);
             //Debug.Log("myAvatr: " + myAvatar);
             myAnim = GetComponent<Animator>();
-        }
+}
     }
 
     private void Update()
     {
         myAvatar.localScale = new Vector2(direction, 1);
-        if (photonView.IsMine)
+        if (photonView.IsMine && !_uiControl.IsChatWindowActive)
         {
             movementInput = WASD.ReadValue<Vector2>();
             myAnim.SetFloat("Speed", movementInput.magnitude);
