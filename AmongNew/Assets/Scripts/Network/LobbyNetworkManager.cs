@@ -56,7 +56,7 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         _statusField.text = "Connected to master server";
-        PhotonNetwork.NickName = "Player" + Random.Range(0, 500);
+        PhotonNetwork.NickName = "Player" + Random.Range(0, 999);
         _playerNameLabel.text = PhotonNetwork.NickName;
         PhotonNetwork.JoinLobby();
     }

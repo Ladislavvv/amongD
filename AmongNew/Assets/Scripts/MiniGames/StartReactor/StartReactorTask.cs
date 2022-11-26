@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class StartReactorTask : MonoBehaviour {
 
     [SerializeField] private Color _activeColor = Color.yellow;
-    [SerializeField] private float _showColorTimeInSeconds = 0.5f;
+    [SerializeField] private float _showColorTimeInSeconds = 0.6f;
 
     [SerializeField] private List<StartReactorButton> _buttonList = new List<StartReactorButton>();
     [SerializeField] private List<Image> _animatedImagesList = new List<Image>();

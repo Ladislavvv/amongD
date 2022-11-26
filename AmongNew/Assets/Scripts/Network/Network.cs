@@ -14,6 +14,8 @@ public class Network : MonoBehaviourPunCallbacks
     public CameraFollow playerCamera;
     public UIControl uiControl;
     public ChatWindowUI chatWindowUI;
+    public VotingManager votingManager;
+    private PhotonView _playerPhotonView;
 
     private void Start()
     {
@@ -30,11 +32,18 @@ public class Network : MonoBehaviourPunCallbacks
         playerCamera.target = newPlayer.transform;
         chatWindowUI._playerInfo = newPlayer.GetComponent<PlayerInfo>();
         newPlayer.GetComponent<Player_Controller>()._uiControl = uiControl;
+        newPlayer.GetComponentInChildren<PlayerDeadBodyReport>().Initialize(uiControl, votingManager);
+        _playerPhotonView = newPlayer.GetComponent<PhotonView>();
 
         if (PhotonNetwork.IsMasterClient)
         {
             masterClient.Initialize();
         }
+    }
+
+    public void DestroyPlayer()
+    {
+        PhotonNetwork.Destroy(_playerPhotonView);
     }
 
     //public override void OnConnectedToMaster()

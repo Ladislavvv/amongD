@@ -109,9 +109,10 @@ GameObject:
   - component: {fileID: 417381660970846658}
   - component: {fileID: 6073986190214495788}
   - component: {fileID: 1393815518591215610}
+  - component: {fileID: 1821041718296533041}
   m_Layer: 3
   m_Name: PlayerBody
-  m_TagString: Untagged
+  m_TagString: DeadBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,6 +170,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bodyFill: {fileID: 4841901595147395604}
+--- !u!58 &1821041718296533041
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426899030362455430}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.28}
+  serializedVersion: 2
+  m_Radius: 1.98
 --- !u!1 &7669781273552184526
 GameObject:
   m_ObjectHideFlags: 0
