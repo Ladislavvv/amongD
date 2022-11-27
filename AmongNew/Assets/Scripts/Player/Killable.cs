@@ -76,7 +76,7 @@ public class Killable : MonoBehaviourPun {
         playerBody.SetColor(playerInfo._allPlayerColors[playerInfo.colorIndex]);
         //transform.position = new  Vector3(Random.Range(-4f, 4f), Random.Range(-4f, 0f), 0);
         PhotonNetwork.Destroy(photonView);
-        //PhotonNetwork.Disconnect();
+        PhotonNetwork.Disconnect();
         UIControl.Instance.OnThisPlayerKilled();
     }
 

@@ -40,8 +40,9 @@ public class VotingManager : MonoBehaviourPun {
     }
 
     public void ReportDeadBody() {
+        Debug.Log("In ReportDeadBody-1");
         if (DeadBodyInProximity == null) { return; }
-
+        Debug.Log("In ReportDeadBody-2 Reported");
         if (_reportedDeadBodiesList.Contains(DeadBodyInProximity.OwnerActorNr)) {
             // the body was already reported. do nothing
             return;

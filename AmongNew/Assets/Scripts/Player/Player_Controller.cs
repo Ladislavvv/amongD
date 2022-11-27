@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class Player_Controller : Photon.Pun.MonoBehaviourPun, IPunObservable
 {
     //Components
-    Rigidbody myRB;
+    Rigidbody2D myRB;
     [SerializeField] Transform myAvatar;
     Animator myAnim;
 
@@ -33,7 +33,7 @@ public class Player_Controller : Photon.Pun.MonoBehaviourPun, IPunObservable
     {
         if (photonView.IsMine)
         {
-            myRB = GetComponent<Rigidbody>();
+            myRB = GetComponent<Rigidbody2D>();
             //myAvatar = transform.GetChild(0);
             //Debug.Log("myAvatr: " + myAvatar);
             myAnim = GetComponent<Animator>();

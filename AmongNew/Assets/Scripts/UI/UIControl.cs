@@ -24,6 +24,7 @@ public class UIControl : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
+        _reportDeadBodyBtn.interactable = true;
     }
 
     //private void Start()
@@ -39,7 +40,7 @@ public class UIControl : MonoBehaviour {
 
         _killBtn.interactable = HasTarget;
         _useBtn.interactable = HasInteractible;
-        _reportDeadBodyBtn.interactable = HasDeadBodyInRange;
+        //_reportDeadBodyBtn.interactable = HasDeadBodyInRange;
     }
 
     public void OnKillButtonPressed() {

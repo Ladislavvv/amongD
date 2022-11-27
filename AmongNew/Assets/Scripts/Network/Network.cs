@@ -32,6 +32,8 @@ public class Network : MonoBehaviourPunCallbacks
         playerCamera.target = newPlayer.transform;
         chatWindowUI._playerInfo = newPlayer.GetComponent<PlayerInfo>();
         newPlayer.GetComponent<Player_Controller>()._uiControl = uiControl;
+        Debug.Log("cs34 _uiControl" + newPlayer.GetComponent<Player_Controller>()._uiControl);
+        Debug.Log("cs36 votingManager;" + votingManager);
         newPlayer.GetComponentInChildren<PlayerDeadBodyReport>().Initialize(uiControl, votingManager);
         _playerPhotonView = newPlayer.GetComponent<PhotonView>();
 

@@ -77,7 +77,7 @@ public class SwipeTask : MonoBehaviour
         }
     }
 
-    public void wireOffTask()
+    public void WireOffTask()
     {
         gameObject.SetActive(false);
     }
