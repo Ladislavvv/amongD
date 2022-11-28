@@ -34,7 +34,7 @@ public class MasterClient : MonoBehaviourPun {
         for (int i = 0; i < players.Length; i++) { playerIndex.Add(i); }
 
         // Based on the player number, pick how many impostors to have
-        impostorNumber = players.Length < 5 ? 1 : 2;
+        impostorNumber = players.Length < 6 ? 1 : 2;
         impostorNumberFinal = impostorNumber;
 
         // Assign the impostor

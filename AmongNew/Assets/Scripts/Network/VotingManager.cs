@@ -177,10 +177,13 @@ public class VotingManager : MonoBehaviourPun {
         if (mostVotes >= remainingPlayers / 2)
         {
             // Kick the player or skip
-            KickPlayerRPC(mostVotedPlayer);
+            //KickPlayerRPC(mostVotedPlayer);
+            photonView.RPC("KickPlayerRPC", RpcTarget.All, mostVotedPlayer);///////////добавил сам
         }
     }
 
+    [PunRPC] // добавил сам
+    //[PunRPC]
     public void KickPlayerRPC(int actorNumber)
     {
         _emergencyMeetingWindow.SetActive(false);
@@ -205,6 +208,7 @@ public class VotingManager : MonoBehaviourPun {
     {
         yield return new WaitForSeconds(2.5f);
         _kickPlayerWindow.SetActive(false);
+        _emergencyMeetingWindow.SetActive(false);
 
         if (PhotonNetwork.LocalPlayer.ActorNumber == actorNumber)
         {
