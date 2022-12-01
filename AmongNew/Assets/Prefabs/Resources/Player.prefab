@@ -747,6 +747,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1072476e00b77b34da044b24ee798ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  playersTotal: []
+  completedTasks: 0
+  tasksToDo: 0
   IsImpostor: 0
   _range: 1.5
 --- !u!120 &6723987898366876465

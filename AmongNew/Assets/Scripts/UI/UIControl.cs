@@ -9,6 +9,8 @@ public class UIControl : MonoBehaviour {
     public Button _useBtn;
     public Button _reportDeadBodyBtn;
 
+
+
     public bool HasTarget;
     public Killable CurrentPlayer;
 
@@ -20,6 +22,9 @@ public class UIControl : MonoBehaviour {
     public GameObject ChatWindowUI;
     public GameObject YouHaveBeenKilledWindow;
 
+    public GameObject impostersVictoryWindow;
+    public GameObject playersVictoryWindow;
+
     public bool IsChatWindowActive { get { return ChatWindowUI.activeInHierarchy; } }
 
     private void Awake() {
@@ -27,11 +32,11 @@ public class UIControl : MonoBehaviour {
         //_reportDeadBodyBtn.interactable = true;
     }
 
-    //private void Start()
-    //{
-    //    ChatWindowUI.SetActive(!ChatWindowUI.activeInHierarchy);
-    //    ChatWindowUI.SetActive(!ChatWindowUI.activeInHierarchy);
-    //}
+    private void Start()
+    {
+        OnChatButtonPressed();
+        OnChatButtonPressed();
+    }
 
     private void Update() {
         if (CurrentPlayer != null) {
@@ -60,5 +65,15 @@ public class UIControl : MonoBehaviour {
 
     public void OnChatButtonPressed() {
        ChatWindowUI.SetActive(!ChatWindowUI.activeInHierarchy);   
+    }
+
+    public void OnImpostersWin()
+    {
+        impostersVictoryWindow.SetActive(true);
+    }
+
+    public void OnPlayersWin()
+    {
+        playersVictoryWindow.SetActive(true);
     }
 }

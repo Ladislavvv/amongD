@@ -1,9 +1,23 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Killable : MonoBehaviourPun {
+
+    //public UIControl uiControl;
+    public GameObject canvas;
+
+    /// <summary>
+    public GameObject[] playersTotal;
+    private int impostersTotal;
+
+    public int completedTasks = 0;
+    public int tasksToDo = 0;
+    private int flag = 0;
+    /// </summary>
 
     //[HideInInspector]
     public bool IsImpostor = false;
@@ -21,6 +35,9 @@ public class Killable : MonoBehaviourPun {
     private void Start() {
         if (!photonView.IsMine) { return; }
         UIControl.Instance.CurrentPlayer = this;
+        canvas = GameObject.Find("Canvas (1)");
+        //tasksToDo = GameObject.FindGameObjectsWithTag("Player").Length * 5;
+        //Debug.Log("tasksToDo: " + tasksToDo);
     }
 
     private void Update() {
@@ -35,7 +52,84 @@ public class Killable : MonoBehaviourPun {
             _lineRenderer.SetPosition(0, Vector3.zero);
             _lineRenderer.SetPosition(1, Vector3.zero);
         }
+
+        //
+        //playersTotal = GameObject.FindGameObjectsWithTag("Player");
+        //Debug.Log("playersTotal: " + playersTotal.Length);
+
+        //if (playersTotal.Length < 3) { return; }
+
+
+        tasksToDo = playersTotal.Length * 5;
+        Debug.Log("tasksToDo: " + tasksToDo);
+        
+        //
+
+        /// IF TASKS ARE COMPLETED -> THE END, PLAYERS WIN
+        
+        if (completedTasks >= tasksToDo && completedTasks != 0)
+        {
+            Debug.Log("Players WIN! completedTasks == tasksToDo");
+            canvas.GetComponent<UIControl>().OnPlayersWin();
+        }
+
+        /// 
+
+
+        if (flag < 305) flag++;
+        
+        /// END OF THE GAME IF COUNT PF PLAYERS <= >= ==
+        impostersTotal = 0;
+        playersTotal = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log("playersTotal: " + playersTotal.Length);
+
+        //if (playersTotal.Length < 3) { return; }
+
+        foreach (GameObject playerI in playersTotal)
+        {
+            if (playerI.GetComponent<Killable>().IsImpostor)
+            {
+                impostersTotal++;
+            }
+        }
+        if (playersTotal.Length == impostersTotal)
+        {
+            //Debug.Log("Imposters WIN!");
+            canvas.GetComponent<UIControl>().OnImpostersWin();
+        }
+
+        if (flag > 300)
+        {
+            if (impostersTotal <= 0)
+            {
+                Debug.Log("Players WIN! impostersTotal <= 0: '" + impostersTotal + "'");
+                canvas.GetComponent<UIControl>().OnPlayersWin();
+            }
+        }
+        //StartCoroutine(EndGameImposterLow());
+        //if (impostersTotal <= 0)
+        //{
+        //    Debug.Log("Players WIN! impostersTotal <= 0: " + impostersTotal);
+        //    canvas.GetComponent<UIControl>().OnPlayersWin();
+        //}
+
+        /// можно попробовать через RPC
     }
+
+    private IEnumerator EndGameImposterLow()
+    {
+        while (true)
+        {
+        if (impostersTotal <= 0)
+        {
+            Debug.Log("Players WIN! impostersTotal <= 0: " + impostersTotal);
+            canvas.GetComponent<UIControl>().OnPlayersWin();
+        }
+
+        yield return new WaitForSeconds(1f);
+        }
+    }
+
 
     private IEnumerator SearchForKillable() {
         while (true) {
@@ -84,5 +178,21 @@ public class Killable : MonoBehaviourPun {
     [PunRPC]
     public void SetImpostor() {
         IsImpostor = true;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //Owner
+            stream.SendNext(completedTasks);
+            //stream.SendNext(impostersTotal);
+        }
+        else
+        {
+            //Remote
+            completedTasks = (int)stream.ReceiveNext();
+            //impostersTotal = (int)stream.ReceiveNext();
+        }
     }
 }

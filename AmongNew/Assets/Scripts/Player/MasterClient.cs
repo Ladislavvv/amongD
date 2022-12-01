@@ -9,6 +9,8 @@ public class MasterClient : MonoBehaviourPun {
     [SerializeField] private GameObject _impostorWindow;
     [SerializeField] private Text _impostorText;
 
+    //public int impostorNumberFinal = 0;
+
     public void Initialize() {
         if (PhotonNetwork.IsMasterClient) {
             StartCoroutine(PickImpostor());
