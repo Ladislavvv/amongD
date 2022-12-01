@@ -14,6 +14,9 @@ public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
     public List<Color> _allPlayerColors = new List<Color>();
     public Text _playerName;
 
+    public List<GameObject> _hats = new List<GameObject>();
+    private int _hatindex = -1;
+
     public Color CurrentColor
     {
         get { return _allPlayerColors[colorIndex]; }
@@ -25,6 +28,7 @@ public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
         {
             colorIndex = Random.Range(0, _allPlayerColors.Count);// -1 ����� �� ����
             _playerName.text = PhotonNetwork.LocalPlayer.NickName;
+            _hatindex = PlayerPrefs.GetInt("PlayerHat");
         }
         else
         {
@@ -39,11 +43,13 @@ public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
         {
             //Owner
             stream.SendNext(colorIndex);
+            stream.SendNext(_hatindex);
         }
         else
         {
             //Remote
             colorIndex = (int)stream.ReceiveNext();
+            _hatindex = (int)stream.ReceiveNext();
         }
     }
 
@@ -51,6 +57,12 @@ public class PlayerInfo : Photon.Pun.MonoBehaviourPun, IPunObservable
     void Update()
     {
         playerBody.color = _allPlayerColors[colorIndex];
+
+        for (int  i = 0; i < _hats.Count; i++)
+        {
+            if(i == _hatindex)
+                _hats[i].SetActive(true);
+        }
     }
 
     private string GetPlayerName(int actorID)
