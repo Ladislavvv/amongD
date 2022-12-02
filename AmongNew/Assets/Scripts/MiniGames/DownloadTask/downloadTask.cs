@@ -7,18 +7,26 @@ public class downloadTask : MonoBehaviour
 {
 
     public Animation myAnim;
+    public GameObject parts;
     //public UIControl _uiControl;
-    GameObject parts;
+    //GameObject parts;
 
     public void Start()
     {
-        myAnim = GetComponent<Animation>();
+        //myAnim = GetComponent<Animation>();
+        myAnim = myAnim.GetComponent<Animation>();
     }
 
     private void OnEnable()
     {
         Debug.Log("OnEnable");
         StartCoroutine(FinishTask());
+    }
+
+    private void OnDisable()
+    {
+        myAnim.Stop();
+        dowloadTask();
     }
 
     private IEnumerator FinishTask()
