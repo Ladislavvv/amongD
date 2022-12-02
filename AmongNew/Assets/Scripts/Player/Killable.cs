@@ -171,6 +171,7 @@ public class Killable : MonoBehaviourPun {
         //transform.position = new  Vector3(Random.Range(-4f, 4f), Random.Range(-4f, 0f), 0);
         PhotonNetwork.Destroy(photonView);
         _target = null;
+        UIControl.Instance.HasTarget = _target;
         //PhotonNetwork.Disconnect();
         UIControl.Instance.OnThisPlayerKilled();
     }
