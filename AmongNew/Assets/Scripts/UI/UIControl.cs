@@ -41,10 +41,13 @@ public class UIControl : MonoBehaviour {
     private void Update() {
         if (CurrentPlayer != null) {
              _killBtn.gameObject.SetActive(CurrentPlayer.IsImpostor);
+             _useBtn.gameObject.SetActive(!CurrentPlayer.IsImpostor);
         }
 
         _killBtn.interactable = HasTarget;
+        if (!CurrentPlayer.IsImpostor){
         _useBtn.interactable = HasInteractible;
+        }
         _reportDeadBodyBtn.interactable = HasDeadBodyInRange;
     }
 
