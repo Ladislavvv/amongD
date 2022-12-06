@@ -10,7 +10,6 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
 {
 
     [SerializeField] private InputField _roomInput;
-    //[SerializeField] private InputField _roomPasswordInput;
     [SerializeField] private RoomItemUI _roomItemUIPrefab;
     [SerializeField] private Transform _roomListParent;
 
@@ -32,14 +31,7 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField] private Text _playerNameLabel;
     private bool _isPlayerNameChanging;
 
-    //#region PrivateRoom
-    //[SerializeField] private InputField _privateRoomPassword;
-    //[SerializeField] private GameObject _privateRoomPasswordWindow;
-    //[SerializeField] private InputField _privateRoomNameWithoutPass;
-    //[SerializeField] private GameObject _privateSecretRoomWindow;
-    //private string _currentPrivateRoomName;
-    //private string _currentPrivateRoomPassword;
-    //#endregion
+    
 
     private List<RoomItemUI> _roomList = new List<RoomItemUI>();
     private List<PlayerItemUI> _playerList = new List<PlayerItemUI>();
@@ -202,8 +194,6 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
         _roomListWindow.SetActive(isRoomList);
         _playerListWindow.SetActive(!isRoomList);
         _createRoomWindow.SetActive(isRoomList);
-        //_privateRoomNameWithoutPass.text = string.Empty;
-        //_privateSecretRoomWindow.SetActive(isRoomList);
     }
 
     public void JoinRoom(string roomName, bool isPrivate, string password)
@@ -211,13 +201,6 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
         if (!isPrivate)
         {
             PhotonNetwork.JoinRoom(roomName);
-        }
-        else
-        {
-            //_currentPrivateRoomName = roomName;
-            //_currentPrivateRoomPassword = password;
-            //_privateRoomPassword.text = string.Empty;
-            //_privateRoomPasswordWindow.SetActive(true);
         }
     }
 
@@ -229,20 +212,6 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
-    //public void CreatePrivateRoom()
-    //{
-    //    if (string.IsNullOrEmpty(_roomInput.text) == false)
-    //    {
-    //        RoomOptions roomOpts = new RoomOptions();
-
-    //        roomOpts.MaxPlayers = 10;
-    //        roomOpts.CustomRoomPropertiesForLobby = new string[] { "pwd" };
-    //        roomOpts.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable();
-    //        roomOpts.CustomRoomProperties["pwd"] = CreateMD5(_roomPasswordInput.text);
-
-    //        PhotonNetwork.CreateRoom(_roomInput.text, roomOpts, null);
-    //    }
-    //}
 
     public void LeaveRoom()
     {
@@ -263,40 +232,6 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Game_scene");//SampleScene 1 // Game_scene game_sceneOther
     }
 
-    //public void OnJoinPrivateRoomPressed()
-    //{
-    //    if (_currentPrivateRoomPassword == CreateMD5(_privateRoomPassword.text))
-    //    {
-    //        _privateRoomPassword.text = string.Empty;
-    //        _privateRoomPasswordWindow.SetActive(false);
-    //        _statusField.text = "Joined password protected room";
-    //        PhotonNetwork.JoinRoom(_currentPrivateRoomName);
-    //    }
-    //    else
-    //    {
-    //        _statusField.text = "Private room password incorrect";
-    //    }
-    //}
-
-    //public void OnCancelJoinPrivateRoomPressed()
-    //{
-    //    _privateRoomPassword.text = string.Empty;
-    //    _privateRoomPasswordWindow.SetActive(false);
-    //    _statusField.text = "Lobby";
-    //}
-
-    //public void OnJoinPrivateRoomWithoutPass()
-    //{
-    //    foreach (RoomInfo roomInfo in _currentRoomList)
-    //    {
-    //        if (roomInfo.Name == _privateRoomNameWithoutPass.text)
-    //        {
-    //            _statusField.text = "Joined secret room";
-    //            _privateSecretRoomWindow.SetActive(false);
-    //            PhotonNetwork.JoinRoom(roomInfo.Name);
-    //        }
-    //    }
-    //}
 
     public void OnChangePlayerNamePressed()
     {
@@ -330,23 +265,4 @@ public class LobbyNetworkManager : MonoBehaviourPunCallbacks
     }
 
     #endregion
-
-    // Encodes a string and returns the hash
-    public static string CreateMD5(string input)
-    {
-        // Use input string to calculate MD5 hash
-        using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
-        {
-            byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-            byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-            // Convert the byte array to hexadecimal string
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hashBytes.Length; i++)
-            {
-                sb.Append(hashBytes[i].ToString("X2"));
-            }
-            return sb.ToString();
-        }
-    }
 }

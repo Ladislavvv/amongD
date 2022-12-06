@@ -39,15 +39,14 @@ public class VotingManager : MonoBehaviourPun {
         return _reportedDeadBodiesList.Contains(actorNumber);
     }
 
-    public void ReportDeadBody() {
-        //Debug.Log("In ReportDeadBody-1");
-        if (DeadBodyInProximity == null) { return; }
-        //Debug.Log("In ReportDeadBody-2 Reported");
+    public void ReportDeadBody() { // функцйия репорта по сети
+        if (DeadBodyInProximity == null) { return; } // проверяем тело на то, что оно является компонентом сети
         if (_reportedDeadBodiesList.Contains(DeadBodyInProximity.OwnerActorNr)) {
-            // the body was already reported. do nothing
+            // проверяем тело, чтобы его не было в необновленном списке тел
+            // если тело находится в этом списке, то возможность зарепортить тело будет недоступна
             return;
         }
-
+        // используя RPC-функцию, 
         photonView.RPC("ReportDeadBodyRPC", RpcTarget.All, DeadBodyInProximity.OwnerActorNr);
     }
 
@@ -178,7 +177,7 @@ public class VotingManager : MonoBehaviourPun {
         {
             // Kick the player or skip
             //KickPlayerRPC(mostVotedPlayer);
-            photonView.RPC("KickPlayerRPC", RpcTarget.All, mostVotedPlayer);///////////добавил сам
+            photonView.RPC("KickPlayerRPC", RpcTarget.All, mostVotedPlayer);
         }
     }
 
@@ -201,13 +200,6 @@ public class VotingManager : MonoBehaviourPun {
         _kickPlayerText.text = actorNumber == -1 ? "No one has been kicked out" : "Player " + playerName + " has been kicked out";
 
         StartCoroutine(FadeKickPlayerWindow(actorNumber));
-
-        //int impostersLeft;
-        //for (int i = 0; i < PhotonNetwork.CurrentRoom.Players.Count; i++)
-        //{
-            
-        //    if (PhotonNetwork.CurrentRoom.Players[i].)
-        //}
     }
 
     private IEnumerator FadeKickPlayerWindow(int actorNumber)

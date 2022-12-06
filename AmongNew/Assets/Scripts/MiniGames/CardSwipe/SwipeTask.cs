@@ -11,7 +11,7 @@ public class SwipeTask : MonoBehaviour
     public GameObject _greenOn;
     public GameObject _redOn;
 
-    //public Transform startPosCard;
+    
  
 
     private int _currentSwipePointIndex = 0;
@@ -21,7 +21,7 @@ public class SwipeTask : MonoBehaviour
     {
         _currentSwipePointIndex = 0;
         _countdown = 0;
-        //startPosCard = transform.GetChild(3);
+       
 
         _greenOn.SetActive(false);
         _redOn.SetActive(false);
@@ -34,7 +34,7 @@ public class SwipeTask : MonoBehaviour
         if (_currentSwipePointIndex != 0 && _countdown <= 0)
         {
             _currentSwipePointIndex = 0;
-            //Debug.Log("Error");
+            
             StartCoroutine(FinishTask(false));
         }
     }
@@ -72,7 +72,7 @@ public class SwipeTask : MonoBehaviour
         if (_currentSwipePointIndex >= _swipePoints.Count)
         {
             _currentSwipePointIndex = 0;
-            //Debug.Log("Finish");
+           
             StartCoroutine(FinishTask(true));
         }
     }
